@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>LunarPy-Labs — Next-Gen Python Infrastructure. Built for Speed.</title>
+  <meta name="title" content="LunarPy-Labs — Next-Gen Python Infrastructure. Built for Speed.">
+  <meta name="description"
+    content="LunarPy-Labs is an open-source engineering lab building high-performance Python infrastructure, async ORMs, and lightweight developer tooling designed for modern software.">
+  <meta name="author" content="LunarPy-Labs">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lunarpy-labs.github.io/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo-mark.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lunarpy-labs.github.io/">
+  <meta property="og:title" content="LunarPy-Labs — Next-Gen Python Infrastructure">
+  <meta property="og:description"
+    content="Open-source Python infrastructure and developer tools built for speed, simplicity, and reliability.">
+  <meta property="og:site_name" content="LunarPy-Labs">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://lunarpy-labs.github.io/">
+  <meta property="twitter:title" content="LunarPy-Labs — Next-Gen Python Infrastructure">
+  <meta property="twitter:description"
+    content="Open-source Python infrastructure and developer tools built for speed, simplicity, and reliability.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#07080c',
+              surface: '#0d1017',
+              card: '#111520',
+              border: '#1e2638',
+              cyan: '#38bdf8',
+              indigo: '#6366f1',
+              amber: '#f59e0b',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body
+  class="bg-brand-bg text-slate-400 font-sans min-h-screen flex flex-col selection:bg-cyan-500/20 selection:text-cyan-300">
+
+  <!-- BACKGROUND GRID & GLOW EFFECTS -->
+  <div class="fixed inset-0 bg-grid-pattern opacity-40 pointer-events-none z-0"></div>
+  <div
+    class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-radial-gradient pointer-events-none z-0">
+  </div>
+
+  <!-- HEADER / STICKY NAVIGATION -->
+  <header id="site-header"
+    class="sticky top-0 z-50 transition-all duration-300 bg-brand-bg/80 backdrop-blur-md border-b border-slate-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+      <!-- Brand Logo -->
+      <a href="#"
+        class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-cyan-500/50 rounded-lg p-1"
+        aria-label="LunarPy-Labs Homepage">
+        <img src="assets/logo-mark.png" alt="LunarPy-Labs Logo"
+          class="h-9 w-9 rounded-lg object-contain transition-transform duration-300 group-hover:scale-105">
+        <span class="text-xl font-bold tracking-tight text-slate-100 font-sans">
+          LunarPy<span class="text-cyan-400">-</span><span class="text-slate-400 font-normal">Labs</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300" aria-label="Main Navigation">
+        <a href="#projects"
+          class="hover:text-cyan-400 transition-colors py-1 focus:outline-none focus:text-cyan-400">Projects</a>
+        <a href="#about"
+          class="hover:text-cyan-400 transition-colors py-1 focus:outline-none focus:text-cyan-400">About</a>
+        <a href="#maintainers"
+          class="hover:text-cyan-400 transition-colors py-1 focus:outline-none focus:text-cyan-400">Maintainers</a>
+        <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+          class="hover:text-cyan-400 transition-colors py-1 focus:outline-none focus:text-cyan-400 flex items-center gap-1">
+          GitHub
+          <svg class="w-3.5 h-3.5 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+      </nav>
+
+      <!-- Right Header CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-1.5 text-xs font-mono font-semibold text-slate-200 bg-slate-900 border border-slate-700/80 hover:border-cyan-500/50 hover:bg-slate-800 rounded-md transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500">
+          <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" type="button"
+        class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+        aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <nav id="mobile-menu"
+      class="md:hidden menu-hidden absolute top-16 left-0 w-full bg-brand-bg/95 backdrop-blur-xl border-b border-slate-800 shadow-2xl px-6 py-6 space-y-4"
+      aria-label="Mobile Navigation" aria-hidden="true">
+      <a href="#projects"
+        class="mobile-nav-link block text-base font-medium text-slate-200 hover:text-cyan-400 transition-colors py-2 border-b border-slate-800/60">Projects</a>
+      <a href="#about"
+        class="mobile-nav-link block text-base font-medium text-slate-200 hover:text-cyan-400 transition-colors py-2 border-b border-slate-800/60">About</a>
+      <a href="#maintainers"
+        class="mobile-nav-link block text-base font-medium text-slate-200 hover:text-cyan-400 transition-colors py-2 border-b border-slate-800/60">Maintainers</a>
+      <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+        class="mobile-nav-link block text-base font-medium text-slate-200 hover:text-cyan-400 transition-colors py-2 border-b border-slate-800/60">GitHub
+        Organization</a>
+      <div class="pt-2">
+        <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+          class="w-full flex items-center justify-center gap-2 px-4 py-3 text-sm font-mono font-semibold text-slate-100 bg-slate-800 border border-slate-700 rounded-lg hover:bg-slate-700">
+          <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow z-10">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-16 pb-20 md:pt-28 md:pb-32 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+
+          <!-- Hero Left Content -->
+          <div class="lg:col-span-7 space-y-8 reveal-item">
+
+            <!-- Eyebrow Badge -->
+            <div
+              class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-slate-900/90 border border-slate-800 text-xs font-mono text-cyan-400 shadow-inner">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse glow-dot"></span>
+              <span>OPEN SOURCE ENGINEERING LAB</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-100 tracking-tight leading-[1.1]">
+              Next-Gen Python Infrastructure.<br class="hidden sm:inline" />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-sky-200">Built
+                for Speed.</span>
+            </h1>
+
+            <!-- Supporting Text -->
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl font-normal leading-relaxed">
+              We build open-source Python infrastructure and developer tools designed to make modern software faster,
+              simpler, and more reliable.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="#projects"
+                class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-400 hover:from-cyan-300 hover:to-sky-300 rounded-lg shadow-lg shadow-cyan-500/20 transition-all duration-200 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+                Explore Projects
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </a>
+              <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2.5 px-6 py-3 text-sm font-mono font-medium text-slate-300 bg-slate-900/80 border border-slate-700/80 hover:border-cyan-500/50 hover:bg-slate-800 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <svg class="w-4 h-4 fill-current text-slate-300" viewBox="0 0 24 24">
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+                View on GitHub
+              </a>
+            </div>
+
+            <!-- Specs summary mini bar -->
+            <div
+              class="pt-6 grid grid-cols-3 gap-4 border-t border-slate-800/80 max-w-lg text-xs font-mono text-slate-400">
+              <div>
+                <span class="block text-slate-200 font-semibold text-sm">Python Native</span>
+                <span>Async & High Performance</span>
+              </div>
+              <div>
+                <span class="block text-slate-200 font-semibold text-sm">100% Free</span>
+                <span>MIT / Open Source</span>
+              </div>
+              <div>
+                <span class="block text-slate-200 font-semibold text-sm">Zero Bloat</span>
+                <span>Minimal Dependencies</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Hero Right Visual: Custom CSS/SVG Technical Orbital Radar -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-item delay-200">
+            <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center">
+
+              <!-- Ambient Glow Behind Radar -->
+              <div class="absolute inset-0 bg-cyan-500/10 rounded-full filter blur-3xl -z-10 animate-pulse-glow"></div>
+
+              <!-- SVG Orbital Radar Canvas -->
+              <svg class="w-full h-full text-slate-800" viewBox="0 0 400 400" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Crosshair & Coordinate Grid -->
+                <line x1="200" y1="20" x2="200" y2="380" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4" />
+                <line x1="20" y1="200" x2="380" y2="200" stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4" />
+                <circle cx="200" cy="200" r="180" stroke="#161e2e" stroke-width="1" />
+
+                <!-- Technical Outer Orbit Ring -->
+                <g class="animate-spin-slow">
+                  <circle cx="200" cy="200" r="150" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="12 8" />
+                  <circle cx="350" cy="200" r="4" fill="#38bdf8" />
+                  <circle cx="200" cy="50" r="3" fill="#6366f1" />
+                </g>
+
+                <!-- Inner Counter-Spinning Orbit Ring -->
+                <g class="animate-spin-reverse-slow">
+                  <ellipse cx="200" cy="200" rx="110" ry="70" stroke="url(#hero-orbit-grad)" stroke-width="1.5"
+                    transform="rotate(-30 200 200)" />
+                  <circle cx="280" cy="140" r="5" fill="#06b6d4" class="glow-dot" />
+                  <circle cx="120" cy="260" r="3" fill="#818cf8" />
+                </g>
+
+                <!-- Static Technical Rings -->
+                <circle cx="200" cy="200" r="75" stroke="#1e293b" stroke-width="1" stroke-dasharray="2 4" />
+
+                <!-- Core Moon/Node Orb -->
+                <circle cx="200" cy="200" r="36" fill="#0c1017" stroke="#38bdf8" stroke-width="2" />
+                <path d="M190 180A24 24 0 0 1 224 214" stroke="#f8fafc" stroke-width="2" stroke-linecap="round" />
+                <circle cx="200" cy="200" r="8" fill="#38bdf8" />
+
+                <!-- Live Signal Node Badges -->
+                <g class="animate-float">
+                  <rect x="250" y="70" width="110" height="28" rx="6" fill="#0d111a" stroke="#1e2638"
+                    stroke-width="1" />
+                  <circle cx="264" cy="84" r="3" fill="#10b981" />
+                  <text x="274" y="88" fill="#94a3b8" font-family="JetBrains Mono" font-size="10"
+                    font-weight="500">async_sync: OK</text>
+                </g>
+
+                <g class="animate-float" style="animation-delay: -2s;">
+                  <rect x="40" y="290" width="120" height="28" rx="6" fill="#0d111a" stroke="#1e2638"
+                    stroke-width="1" />
+                  <circle cx="54" cy="304" r="3" fill="#38bdf8" />
+                  <text x="64" y="308" fill="#94a3b8" font-family="JetBrains Mono" font-size="10"
+                    font-weight="500">zero_n_plus_1</text>
+                </g>
+
+                <defs>
+                  <linearGradient id="hero-orbit-grad" x1="90" y1="130" x2="310" y2="270"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#38bdf8" />
+                    <stop offset="0.5" stop-color="#818cf8" />
+                    <stop offset="1" stop-color="#0284c7" stop-opacity="0.1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- OPEN SOURCE PROJECTS SECTION -->
+    <section id="projects" class="py-20 border-t border-slate-800/60 bg-slate-950/40 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4 reveal-item">
+          <h2 class="text-xs font-mono text-cyan-400 tracking-wider uppercase">MODULAR ECOSYSTEM</h2>
+          <p class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">Open Source Projects</p>
+          <p class="text-base sm:text-lg text-slate-400">Tools and infrastructure built for modern Python developers.
+          </p>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <!-- PROJECT CARD 1: LunarDump -->
+          <article class="tech-card rounded-xl p-6 sm:p-8 flex flex-col justify-between reveal-item delay-200 group">
+            <div class="space-y-5">
+
+              <!-- Header & Status -->
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="flex items-center gap-3">
+                    <h3 class="text-2xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">LunarDump
+                    </h3>
+                    <span
+                      class="px-2 py-0.5 text-[11px] font-mono font-medium rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">v0.3.0</span>
+                  </div>
+                  <p class="text-sm font-mono text-cyan-400 mt-1">"Lightweight. Fast. Zero-Trust."</p>
+                </div>
+                <div
+                  class="p-2.5 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400 group-hover:border-cyan-500/40 transition-colors">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                      d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                A lightweight, zero-trust CLI tool built in Python to automate, encrypt, and stream database backups
+                directly to multi-cloud storage.
+              </p>
+
+              <!-- Tech Badges -->
+              <div class="flex flex-wrap gap-2 pt-2">
+                <span
+                  class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800">Python</span>
+                <span
+                  class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800">CLI</span>
+                <span
+                  class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800">Database</span>
+                <span
+                  class="px-2.5 py-1 text-xs font-mono rounded-md bg-slate-900 text-slate-300 border border-slate-800">Cloud</span>
+              </div>
+            </div>
+
+            <!-- Footer Links -->
+            <div
+              class="pt-8 mt-8 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4 text-sm">
+              <div class="flex items-center gap-4">
+                <a href="https://github.com/indhifarhandika/LunarDump" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 font-mono font-medium text-slate-200 hover:text-cyan-400 transition-colors">
+                  <span>GitHub</span>
+                  <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+                <span class="text-slate-700">•</span>
+                <a href="https://lunardump.indhifarhandika.dev/" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 font-mono font-medium text-cyan-400 hover:underline">
+                  <span>Documentation</span>
+                  <svg class="w-3.5 h-3.5 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Stable
+              </span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- WHY LUNARPY-LABS SECTION ("Engineering, Not Hype") -->
+    <section id="about" class="py-20 border-t border-slate-800/60 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="max-w-3xl mb-16 space-y-4 reveal-item">
+          <h2 class="text-xs font-mono text-cyan-400 tracking-wider uppercase">CORE PHILOSOPHY</h2>
+          <p class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">Engineering, Not Hype.</p>
+          <p class="text-base sm:text-lg text-slate-400 leading-relaxed">
+            LunarPy-Labs focuses on solving practical engineering problems through open-source software, careful
+            architecture, and measurable performance.
+          </p>
+        </div>
+
+        <!-- 4 Technical Principles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <!-- Principle 01 -->
+          <div
+            class="tech-card rounded-xl p-6 relative overflow-hidden reveal-item delay-100 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-mono text-cyan-400 px-2 py-1 bg-slate-900 border border-slate-800 rounded">01</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-cyan-400"></div>
+              </div>
+              <h3 class="text-xl font-bold text-slate-100">Performance</h3>
+              <p class="text-sm font-mono text-slate-300 italic">"Measure first. Optimize what matters."</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+              Benchmark driven design with zero hidden allocations.
+            </p>
+          </div>
+
+          <!-- Principle 02 -->
+          <div
+            class="tech-card rounded-xl p-6 relative overflow-hidden reveal-item delay-200 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-mono text-indigo-400 px-2 py-1 bg-slate-900 border border-slate-800 rounded">02</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-indigo-400"></div>
+              </div>
+              <h3 class="text-xl font-bold text-slate-100">Simplicity</h3>
+              <p class="text-sm font-mono text-slate-300 italic">"Powerful infrastructure should remain approachable."
+              </p>
+            </div>
+            <p class="text-xs text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+              Clean APIs with minimal configuration overhead.
+            </p>
+          </div>
+
+          <!-- Principle 03 -->
+          <div
+            class="tech-card rounded-xl p-6 relative overflow-hidden reveal-item delay-300 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-mono text-sky-400 px-2 py-1 bg-slate-900 border border-slate-800 rounded">03</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-sky-400"></div>
+              </div>
+              <h3 class="text-xl font-bold text-slate-100">Developer Experience</h3>
+              <p class="text-sm font-mono text-slate-300 italic">"Tools should make developers faster, not add
+                unnecessary complexity."</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+              Intuitive CLI tooling and complete type hints.
+            </p>
+          </div>
+
+          <!-- Principle 04 -->
+          <div
+            class="tech-card rounded-xl p-6 relative overflow-hidden reveal-item delay-400 flex flex-col justify-between h-full">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span
+                  class="text-xs font-mono text-emerald-400 px-2 py-1 bg-slate-900 border border-slate-800 rounded">04</span>
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+              </div>
+              <h3 class="text-xl font-bold text-slate-100">Open Source</h3>
+              <p class="text-sm font-mono text-slate-300 italic">"Build in the open. Learn in the open. Improve
+                together."</p>
+            </div>
+            <p class="text-xs text-slate-500 mt-6 pt-4 border-t border-slate-800/60">
+              Transparent development with community engagement.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TECHNOLOGY ECOSYSTEM SECTION -->
+    <section class="py-20 border-t border-slate-800/60 bg-slate-950/40 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-14 space-y-3 reveal-item">
+          <h2 class="text-xs font-mono text-cyan-400 tracking-wider uppercase">TECHNICAL STACK</h2>
+          <p class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">Built With Modern Technology</p>
+          <p class="text-sm sm:text-base text-slate-400">
+            Technologies explored and used across the LunarPy-Labs ecosystem.
+          </p>
+        </div>
+
+        <!-- Tech Badge Cloud -->
+        <div class="flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto reveal-item delay-100">
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">Python</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">Rust</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">Cython</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">AsyncIO</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">PostgreSQL</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">MySQL</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">Docker</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">GitHub Actions</span>
+          </div>
+
+          <div
+            class="flex items-center gap-2.5 px-4 py-2.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-850 transition-all shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="text-sm font-mono font-medium text-slate-200">Cloud Storage</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- MAINTAINERS SECTION -->
+    <section id="maintainers" class="py-20 border-t border-slate-800/60 bg-slate-950/40 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4 reveal-item">
+          <h2 class="text-xs font-mono text-cyan-400 tracking-wider uppercase">LEADERSHIP & CONTRIBUTORS</h2>
+          <p class="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">Core Maintainers</p>
+          <p class="text-base sm:text-lg text-slate-400">Engineering leadership driving LunarPy-Labs projects and
+            open-source infrastructure.</p>
+        </div>
+
+        <!-- Maintainers Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+
+          <!-- Lead Maintainer Card -->
+          <div class="tech-card rounded-xl p-6 sm:p-8 flex flex-col justify-between reveal-item delay-100 group">
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <img src="https://github.com/indhifarhandika.png" alt="Indhi Farhandika"
+                  class="w-16 h-16 rounded-full border-2 border-cyan-500/40 p-0.5 object-cover bg-slate-900 shadow-md">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h3 class="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">Indhi
+                      Farhandika</h3>
+                    <span
+                      class="px-2 py-0.5 text-[10px] font-mono font-medium rounded bg-cyan-950/80 text-cyan-400 border border-cyan-800/60">Lead</span>
+                  </div>
+                  <p class="text-xs font-mono text-slate-400 mt-1">@indhifarhandika</p>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-400 leading-relaxed">
+                Engineered for High-Performance Python Systems.
+              </p>
+
+              <!-- Maintainer Web & Social Links -->
+              <div class="flex flex-wrap items-center gap-2.5 pt-1">
+                <!-- Personal Website / Portfolio -->
+                <a href="https://indhifarhandika.dev" target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-cyan-500/40 hover:bg-slate-850 text-xs font-mono text-cyan-400 transition-all"
+                  title="Personal Website / Portfolio">
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                    </path>
+                  </svg>
+                  <span>indhifarhandika.dev</span>
+                </a>
+
+                <!-- GitHub Profile -->
+                <a href="https://github.com/indhifarhandika" target="_blank" rel="noopener noreferrer"
+                  class="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 hover:text-cyan-400 text-slate-400 transition-all"
+                  aria-label="GitHub Profile" title="GitHub Profile">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path
+                      d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com/in/indhifarhandika" target="_blank" rel="noopener noreferrer"
+                  class="p-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 hover:text-cyan-400 text-slate-400 transition-all"
+                  aria-label="LinkedIn Profile" title="LinkedIn Profile">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path
+                      d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                  </svg>
+                </a>
+
+              </div>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <span class="text-xs font-mono text-cyan-400">Core Architect & Founder</span>
+              <span class="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Active Maintainer
+              </span>
+            </div>
+          </div>
+
+          <!-- Join as Contributor Card -->
+          <div
+            class="tech-card rounded-xl p-6 sm:p-8 flex flex-col justify-between reveal-item delay-200 group border-dashed">
+            <div class="space-y-6">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-16 h-16 rounded-full border-2 border-slate-700 bg-slate-900 flex items-center justify-center text-cyan-400">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors">Join as
+                    Contributor</h3>
+                  <p class="text-xs font-mono text-slate-400 mt-1">Open Source Community</p>
+                </div>
+              </div>
+
+              <p class="text-sm text-slate-400 leading-relaxed">
+                We welcome developer contributions, documentation improvements, issue reports, and RFC proposals across
+                all LunarPy-Labs projects.
+              </p>
+            </div>
+
+            <div class="pt-6 mt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-xs font-mono text-slate-200 hover:text-cyan-400 transition-colors">
+                <span>View Contribution Docs</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                  </path>
+                </svg>
+              </a>
+              <span class="text-[11px] font-mono text-emerald-400">Open to All</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- OPEN SOURCE CALL TO ACTION -->
+    <section class="py-20 border-t border-slate-800/60 relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal-item">
+
+        <div
+          class="tech-card rounded-2xl p-8 sm:p-14 border border-slate-800 relative bg-gradient-to-b from-slate-900/90 to-brand-surface shadow-2xl">
+
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight mb-6">
+            Build the Next Layer.
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed">
+            LunarPy-Labs is built in the open. Explore the projects, experiment with them, report issues, contribute
+            improvements, or build something on top of them.
+          </p>
+
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-mono font-semibold text-slate-950 bg-cyan-400 hover:bg-cyan-300 rounded-lg shadow-lg shadow-cyan-500/20 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-4 h-4 fill-current text-slate-950" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              Explore GitHub
+            </a>
+            <a href="#projects"
+              class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-slate-300 bg-slate-900 border border-slate-700/80 hover:border-cyan-500/50 hover:bg-slate-800 rounded-lg transition-all duration-200">
+              Explore Projects
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-800/80 bg-brand-bg relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+
+        <!-- Left Footer Info -->
+        <div class="md:col-span-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <img src="assets/logo-mark.png" alt="LunarPy-Labs Logo" class="h-8 w-8 rounded-lg object-contain">
+            <span class="text-lg font-bold tracking-tight text-slate-100 font-sans">
+              LunarPy<span class="text-cyan-400">-</span><span class="text-slate-400 font-normal">Labs</span>
+            </span>
+          </div>
+          <p class="text-sm font-mono text-slate-400">
+            Next-Gen Python Infrastructure. Built for Speed.
+          </p>
+          <div
+            class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-mono text-emerald-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>All Systems Operational</span>
+          </div>
+        </div>
+
+        <!-- Right Quick Links -->
+        <div class="md:col-span-6 flex flex-wrap md:justify-end gap-10 text-sm font-medium">
+          <div class="space-y-3">
+            <span class="block text-xs font-mono text-slate-300 uppercase tracking-wider">Navigation</span>
+            <ul class="space-y-2">
+              <li><a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a></li>
+              <li><a href="#about" class="hover:text-cyan-400 transition-colors">About</a></li>
+              <li><a href="#maintainers" class="hover:text-cyan-400 transition-colors">Maintainers</a></li>
+            </ul>
+          </div>
+
+          <div class="space-y-3">
+            <span class="block text-xs font-mono text-slate-300 uppercase tracking-wider">Ecosystem</span>
+            <ul class="space-y-2">
+              <li>
+                <a href="https://github.com/LunarPy-Labs" target="_blank" rel="noopener noreferrer"
+                  class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                  GitHub Organization
+                  <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a href="https://lunardump.readthedocs.io/" target="_blank" rel="noopener noreferrer"
+                  class="hover:text-cyan-400 transition-colors flex items-center gap-1">
+                  Documentation
+                  <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bar -->
+      <div
+        class="mt-12 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
+        <p>© 2026 LunarPy-Labs. Built in the open.</p>
+        <p>Static Site — GitHub Pages Compatible</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Core JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
